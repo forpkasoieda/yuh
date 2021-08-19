@@ -1,23 +1,45 @@
 workflows:
   android-debug:
     name: Andoid debug
+    instance_type: linux_x2
     environment:
       vars:
         SONAR_TOKEN: Encrypted(Z0FBQUFBQmhHcXlJSGVwRVVmWF9GNVdGaWR3Z0M2ZVdWbFRUd201MHF2bHdIeTZXbjU2ZXhqUEw4MGlxSlRHQ0h1T1hiNkFrSUlhTHFjdDhaT2dRd29CR1Q0LXdZMkdLUElBOHRsc1p1WFczb2V1c1poczFlUTJybHlla1ZqemU2azE1SGpzd08xelE=)
         SONAR_PROJECT_KEY: Encrypted(Z0FBQUFBQmhHcXp6MFBCVHo3N3JGYnJRSVpzdm9ES2FQNENmVnZtZFBhQTQ1UVhBckQxakdOTFphM21ZZnRHVGJxeTdRNEllTW5ZUDlneTJ1cEZSbGZsZG1WUWJhcjFwNjVRamdWcTFTX0JIaGJ0OWQwdm04T3l5Q2hoS1RuSFBEWW90SUNWQndSUElCNDNyRmQtNzFJN2kxa1otTTNDeEZ3PT0=)
         SONAR_ORG_KEY: Encrypted(Z0FBQUFBQmhHcTBaM0QwN1lER0k4SHphVWpiOXNKLWFxSzQ2N0QxTXBGUWRORWppM21hVFM3UXFMZDA1YUFPd1ZvNWZRN04wOHc0Y0toM0txWXhzc2RPbUs4Qi1Oa2xzWVE9PQ==)
+    triggering:
+        events:
+            - pull_request
+        branch_patterns:
+            - pattern: branch-develop
+              include: true
+              source: true    
     scripts:
       - |
         # Generate debug build
         ./gradlew assembleDebug        
       - |
         # Generate and upload code analysis report
+
+        if [[ $FCI_PULL_REQUEST == true ]]
+        then
+          TARGET=$FCI_PULL_REQUEST_DEST
+        else 
+          TARGET=$FCI_BRANCH
+        fi
+
         ./gradlew sonarqube \
         -Dsonar.projectKey=$SONAR_PROJECT_KEY \
         -Dsonar.organization=$SONAR_ORG_KEY \
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=$SONAR_TOKEN \
-        -Dsonar.projectVersion=1.0.0-cm        
+        -Dsonar.projectVersion=1.0.1-cm \
+        $(if [[ $FCI_PULL_REQUEST ]]
+        then
+          echo -Dsonar.branch.name=$FCI_BRANCH -Dsonar.branch.target=$TARGET
+        else
+          echo -Dsonar.branch.name=$FCI_BRANCH
+        fi)          
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
