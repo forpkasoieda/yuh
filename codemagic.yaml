@@ -1,6 +1,7 @@
 workflows:
   android-debug:
     name: Andoid debug
+    instance_type: linux_x2
     environment:
       vars:
         SONAR_TOKEN: Encrypted(Z0FBQUFBQmhHcXlJSGVwRVVmWF9GNVdGaWR3Z0M2ZVdWbFRUd201MHF2bHdIeTZXbjU2ZXhqUEw4MGlxSlRHQ0h1T1hiNkFrSUlhTHFjdDhaT2dRd29CR1Q0LXdZMkdLUElBOHRsc1p1WFczb2V1c1poczFlUTJybHlla1ZqemU2azE1SGpzd08xelE=)
