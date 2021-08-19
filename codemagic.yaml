@@ -34,7 +34,7 @@ workflows:
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=$SONAR_TOKEN \
         -Dsonar.projectVersion=1.0.1-cm \
-        $(if [[ $FCI_PULL_REQUEST ]]
+        $(if [[ $$FCI_BRANCH != "main" ]]
         then
           echo -Dsonar.branch.name=$FCI_BRANCH -Dsonar.branch.target=$TARGET
         else
