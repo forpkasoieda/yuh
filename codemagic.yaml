@@ -36,8 +36,12 @@ workflows:
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=$SONAR_TOKEN \
         -Dsonar.projectVersion=1.0.0-cm \
-        -Dsonar.branch.name=$FCI_BRANCH \
-        -Dsonar.branch.target=$TARGET        
+        $(if [[ $TARGET != "main" ]]
+        then
+        echo -Dsonar.branch.name=$FCI_BRANCH -Dsonar.branch.target=$TARGET
+        else
+        echo -Dsonar.branch.name=$FCI_BRANCH
+        fi)          
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
