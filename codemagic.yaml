@@ -8,8 +8,6 @@ workflows:
         SONAR_ORG_KEY: Encrypted(Z0FBQUFBQmhHcTBaM0QwN1lER0k4SHphVWpiOXNKLWFxSzQ2N0QxTXBGUWRORWppM21hVFM3UXFMZDA1YUFPd1ZvNWZRN04wOHc0Y0toM0txWXhzc2RPbUs4Qi1Oa2xzWVE9PQ==)
     triggering:
         events:
-            - push
-            - tag
             - pull_request
         branch_patterns:
             - pattern: branch-develop
