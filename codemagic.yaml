@@ -20,8 +20,8 @@ workflows:
         ./gradlew assembleDebug        
       - |
         # Generate and upload code analysis report
-        
-        ./gradlew sonarqube
+
+        ./gradlew sonarqube --debug
 
         # if [[ $FCI_PULL_REQUEST == true ]]
         # then
