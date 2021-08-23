@@ -7,8 +7,8 @@ plugins {
 sonarqube {
     properties {
         property "sonar.branch", "gradle-config"
-        property "sonar.projectKey", "codemagic-ci-cd_android-sonarcloud-sample-project"
-        property "sonar.organization", "codemagic-ci-cd"
+        property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY")
+        property "sonar.organization", System.getenv("SONAR_ORG_KEY")
         property "sonar.branch.name", System.getenv("FCI_BRANCH")
         property "sonar.login", System.getenv("SONAR_TOKEN")
     }
