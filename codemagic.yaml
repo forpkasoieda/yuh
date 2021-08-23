@@ -21,7 +21,7 @@ workflows:
       - |
         # Generate and upload code analysis report
 
-        ./gradlew sonarqube --debug
+        ./gradlew sonarqube
 
         # if [[ $FCI_PULL_REQUEST == true ]]
         # then
