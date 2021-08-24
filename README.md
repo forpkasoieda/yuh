@@ -24,8 +24,8 @@ Set the Sonarqube properties in app/build.gradle. Change the branch as required 
 ```
 sonarqube {
     properties {
-        property "sonar.branch", "gradle-config"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.branch", System.getenv("FCI_BRANCH")
         property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY")
         property "sonar.organization", System.getenv("SONAR_ORG_KEY")
         property "sonar.branch.name", System.getenv("FCI_BRANCH")
@@ -34,3 +34,9 @@ sonarqube {
     }
 }
 ```
+
+## Sonarcloud report
+
+https://sonarcloud.io/dashboard?id=codemagic-ci-cd_android-sonarcloud-sample-project
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=codemagic-ci-cd_android-sonarcloud-sample-project&metric=alert_status)](https://sonarcloud.io/dashboard?id=codemagic-ci-cd_android-sonarcloud-sample-project)
