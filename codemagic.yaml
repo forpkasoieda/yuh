@@ -1,6 +1,6 @@
 workflows:
-  android-debug:
-    name: Andoid debug
+  android-sonarcloud-gradle:
+    name: Andoid Sonarcloud gradle
     instance_type: linux_x2
     environment:
       vars:
