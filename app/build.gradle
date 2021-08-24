@@ -13,6 +13,7 @@ sonarqube {
         property "sonar.branch.name", System.getenv("FCI_BRANCH")
         property "sonar.branch.target", System.getenv("FCI_PULL_REQUEST_DEST")
         property "sonar.login", System.getenv("SONAR_TOKEN")
+        property "sonar.projectVersion", "1.0.1"
     }
 }
 
