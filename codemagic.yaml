@@ -1,6 +1,6 @@
 workflows:
-  android-debug:
-    name: Andoid debug
+  android-sonarcloud-gradle:
+    name: Andoid Sonarcloud gradle
     instance_type: linux_x2
     environment:
       vars:
@@ -11,7 +11,7 @@ workflows:
         events:
             - pull_request
         branch_patterns:
-            - pattern: branch-develop
+            - pattern: gradle-config
               include: true
               source: true    
     scripts:
@@ -20,26 +20,7 @@ workflows:
         ./gradlew assembleDebug        
       - |
         # Generate and upload code analysis report
-
-        if [[ $FCI_PULL_REQUEST == true ]]
-        then
-          TARGET=$FCI_PULL_REQUEST_DEST
-        else 
-          TARGET=$FCI_BRANCH
-        fi
-
-        ./gradlew sonarqube \
-        -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-        -Dsonar.organization=$SONAR_ORG_KEY \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=$SONAR_TOKEN \
-        -Dsonar.projectVersion=1.0.1-cm \
-        $(if [[ $FCI_BRANCH != "main" ]]
-        then
-          echo -Dsonar.branch.name=$FCI_BRANCH -Dsonar.branch.target=$TARGET
-        else
-          echo -Dsonar.branch.name=$FCI_BRANCH
-        fi)          
+        ./gradlew sonarqube
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
