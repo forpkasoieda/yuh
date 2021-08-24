@@ -11,37 +11,16 @@ workflows:
         events:
             - pull_request
         branch_patterns:
-            - pattern: branch-develop
+            - pattern: gradle-config
               include: true
               source: true    
     scripts:
-      # - |
-      #   # Generate debug build
-      #   ./gradlew assembleDebug        
+      - |
+        # Generate debug build
+        ./gradlew assembleDebug        
       - |
         # Generate and upload code analysis report
-
         ./gradlew sonarqube
-
-        # if [[ $FCI_PULL_REQUEST == true ]]
-        # then
-        #   TARGET=$FCI_PULL_REQUEST_DEST
-        # else 
-        #   TARGET=$FCI_BRANCH
-        # fi
-
-        # ./gradlew sonarqube \
-        # -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-        # -Dsonar.organization=$SONAR_ORG_KEY \
-        # -Dsonar.host.url=https://sonarcloud.io \
-        # -Dsonar.login=$SONAR_TOKEN \
-        # -Dsonar.projectVersion=1.0.1-cm \
-        # $(if [[ $FCI_BRANCH != "main" ]]
-        # then
-        #   echo -Dsonar.branch.name=$FCI_BRANCH -Dsonar.branch.target=$TARGET
-        # else
-        #   echo -Dsonar.branch.name=$FCI_BRANCH
-        # fi)          
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
