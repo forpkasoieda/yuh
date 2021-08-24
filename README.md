@@ -25,6 +25,7 @@ Set the Sonarqube properties in app/build.gradle. Change the branch as required 
 sonarqube {
     properties {
         property "sonar.branch", "gradle-config"
+        property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY")
         property "sonar.organization", System.getenv("SONAR_ORG_KEY")
         property "sonar.branch.name", System.getenv("FCI_BRANCH")
