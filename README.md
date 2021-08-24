@@ -45,3 +45,5 @@ sonarqube {
 https://sonarcloud.io/dashboard?id=codemagic-ci-cd_android-sonarcloud-sample-project
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=codemagic-ci-cd_android-sonarcloud-sample-project&metric=alert_status)](https://sonarcloud.io/dashboard?id=codemagic-ci-cd_android-sonarcloud-sample-project)
+
+[![Codemagic build status](https://api.codemagic.io/apps/611aad8d86db0db019fb0be6/android-sonarcloud-gradle/status_badge.svg)](https://codemagic.io/apps/611aad8d86db0db019fb0be6/android-sonarcloud-gradle/latest_build)
