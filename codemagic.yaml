@@ -15,9 +15,9 @@ workflows:
               include: true
               source: true    
     scripts:
-      - |
-        # Generate debug build
-        ./gradlew assembleDebug        
+      # - |
+      #   # Generate debug build
+      #   ./gradlew assembleDebug        
       - |
         # Generate and upload code analysis report
         ./gradlew sonarqube
