@@ -11,8 +11,6 @@ sonarqube {
         property "sonar.branch", System.getenv("FCI_BRANCH")
         property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY")
         property "sonar.organization", System.getenv("SONAR_ORG_KEY")
-        property "sonar.branch.name", System.getenv("FCI_BRANCH")
-        property "sonar.branch.target", System.getenv("FCI_PULL_REQUEST_DEST")
         property "sonar.login", System.getenv("SONAR_TOKEN")
     }
 }
